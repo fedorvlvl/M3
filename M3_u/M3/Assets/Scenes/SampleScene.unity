@@ -175,8 +175,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 7086606104257924489, guid: 34f6321b206afab459fb7c8d37989456,
     type: 3}
   m_Type: 0
@@ -225,6 +223,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6563bd1f49a36f542af5fa16b67babdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardLayout:
+    grid: {fileID: 0}
+    rows:
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000010101000000
+    - row: 000000010101000000
+    - row: 000000010101000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+    - row: 000000000000000000
+  pieces:
+  - {fileID: 7086606104257924489, guid: 34f6321b206afab459fb7c8d37989456, type: 3}
+  - {fileID: -7105913188517789750, guid: 34f6321b206afab459fb7c8d37989456, type: 3}
+  - {fileID: -8166966530815011495, guid: 34f6321b206afab459fb7c8d37989456, type: 3}
+  - {fileID: -488248382649040768, guid: 34f6321b206afab459fb7c8d37989456, type: 3}
+  - {fileID: 5528609633622603068, guid: 2c97df9695607b04c92ec362851a0890, type: 3}
 --- !u!4 &406596055
 Transform:
   m_ObjectHideFlags: 0
@@ -378,8 +399,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
