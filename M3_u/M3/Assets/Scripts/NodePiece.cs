@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; 
 
-public class NodePiece : MonoBehaviour
+public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public int value;
     public Point index;
@@ -13,8 +14,10 @@ public class NodePiece : MonoBehaviour
     [HideInInspector]
     public RectTransform rect;
 
+    bool updating;
     Image img;
 
+   
  
     public void Initialize(int v, Point p, Sprite piece)
     {
@@ -25,11 +28,22 @@ public class NodePiece : MonoBehaviour
         SetIndex(p);
         img.sprite = piece;
     }
-
+    public void SetIndex(Point p)
+    {
+        index = p;
+        ResetPosition();
+        UpdateName();
+    }
 
     public void ResetPosition()
     {
         pos = new Vector2(32 + (64 * index.x), -32 - (64 * index.y));
+    }
+
+    public bool UpdatePiece()
+    {
+        return true;
+        // return false if not moving
     }
 
     void UpdateName()
@@ -37,10 +51,18 @@ public class NodePiece : MonoBehaviour
         transform.name = "Node [" + index.x + ", " + index.y + "]";
     }
 
-    public void SetIndex(Point p)
+
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        index = p;
-        ResetPosition();
-        UpdateName();
+        if (updating) return;
+        Debug.Log("Grab" + transform.name);
+        //throw new System.NotImplementedException();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("Let's go of" + transform.name);
+        //throw new System.NotImplementedException();
     }
 }
