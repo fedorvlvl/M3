@@ -19,6 +19,8 @@ public class Match3 : MonoBehaviour
     int height = 14;
     Node[,] board;
 
+    List<NodePiece> update;
+
     System.Random random;
 
     void Start()
@@ -26,11 +28,21 @@ public class Match3 : MonoBehaviour
         StartGame();
     }
 
+    void Update()
+    {
+        for (int i=0; i<update.Count;i++)
+        {
+            NodePiece piece = update[i];
+            bool updating = piece.UpdatePiece();
+        }
+    }
+
     void StartGame()
     {       
 
         string seed = getRandomSeed();
         random = new System.Random(seed.GetHashCode());
+        update = new List<NodePiece>();
 
         InitializeBoard();
         VerifyBoard();
@@ -88,6 +100,12 @@ public class Match3 : MonoBehaviour
 
             }
         }
+    }
+
+    public void  ResetPiece(NodePiece piece)
+    {
+        piece.ResetPosition();
+        update.Add(piece);
     }
 
     List<Point> isConnected(Point p, bool main)
@@ -228,10 +246,7 @@ public class Match3 : MonoBehaviour
        
     }
 
-    void Update()
-    {
-        
-    }
+
 
     string getRandomSeed()
     {

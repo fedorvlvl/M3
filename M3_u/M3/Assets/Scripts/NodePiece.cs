@@ -40,9 +40,28 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         pos = new Vector2(32 + (64 * index.x), -32 - (64 * index.y));
     }
 
+    public void MovePosition(Vector2 move)
+    {
+        rect.anchoredPosition += move * Time.deltaTime*16f;
+    }
+    public void MovePositionTo(Vector2 move)
+    {
+        rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, move, Time.deltaTime * 16f);
+    }
     public bool UpdatePiece()
     {
-        return true;
+        if (Vector2.Distance(rect.anchoredPosition, pos)>1)
+        {
+            MovePositionTo(pos);
+            updating = true;
+            return true;
+        } else
+        {
+            rect.anchoredPosition = pos;
+            updating = false;
+            return false;
+        }
+        
         // return false if not moving
     }
 
@@ -56,13 +75,11 @@ public class NodePiece : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (updating) return;
-        Debug.Log("Grab" + transform.name);
-        //throw new System.NotImplementedException();
+        MovePieces.instance.MovePiece(this);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Let's go of" + transform.name);
-        //throw new System.NotImplementedException();
+        MovePieces.instance.DropPiece();
     }
 }

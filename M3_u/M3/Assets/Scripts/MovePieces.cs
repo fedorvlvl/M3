@@ -25,7 +25,7 @@ public class MovePieces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(moving!=null)
+        if(moving != null)
         {
             Vector2 dir = ((Vector2)Input.mousePosition - mouseStart);
             Vector2 nDir = dir.normalized;
@@ -39,15 +39,31 @@ public class MovePieces : MonoBehaviour
                 if (aDir.x > aDir.y)
                     add = (new Point((nDir.x > 0) ? 1 : -1, 0));
                 else if (aDir.y>aDir.x)
-                    add = (new Point((nDir.y > 0) ? 1 : -1, 0));
+                    add = (new Point(0, (nDir.y > 0) ? 1 : -1));
             }
             newIndex.add(add);
             Vector2 pos = game.getPositionFromPoint(moving.index);
-            if (!newIndex.Equals(moving.index))
-            {
-                pos += Point.mult(new Point(add.x, -add.y), 16).ToVector();
-            }
+            if (!newIndex.Equals(moving.index))            
+                pos += Point.mult(add,16).ToVector();            
+            moving.MovePositionTo(pos);
         }
         
+    }
+    public void MovePiece(NodePiece piece)
+    {
+        if (moving != null) return;
+        moving = piece;
+        mouseStart = Input.mousePosition;
+    }
+    public void DropPiece()
+    {
+        if (moving == null) return;
+        Debug.Log("Dropped");
+
+        // if new index != moving.index
+        // Flip the pieces around in the game board
+        // else
+        // Reset the piece back to original spot
+        moving = null;
     }
 }
