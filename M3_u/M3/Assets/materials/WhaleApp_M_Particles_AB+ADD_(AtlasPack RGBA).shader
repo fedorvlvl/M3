@@ -1,5 +1,5 @@
 
-Shader "WhaleApp/Particles/Mobile Particles AB+ADD (AtlasPack RGBA)" {
+Shader "shaders/Particles/Mobile Particles AB+ADD (AtlasPack RGBA)" {
     Properties {
         _Diffuse ("Diffuse R", 2D) = "white" {}
         
